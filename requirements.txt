@@ -1,2 +1,6 @@
 pytube
 pandas
+pydub
+librosa
+noisereduce
+numpy
