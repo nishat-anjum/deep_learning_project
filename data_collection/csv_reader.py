@@ -5,6 +5,7 @@ logger = configure_log(__name__)
 
 def read_playlist_from_csv_file(file_path):
     try:
+        logger.debug("Reading CSV file")
         data = pd.read_csv(file_path)
         return data["playlist_url"].tolist()
     except FileNotFoundError:

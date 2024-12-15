@@ -1,11 +1,12 @@
 import os
 from logger import configure_log
-from pytube import YouTube
+from pytube import YouTube, Playlist
 from config import DOWNLOAD_DIRECTORY
 
-logger = configure_log()
+logger = configure_log(__name__)
 
-def download_audio_from_youtube(url):
+
+def download_audio_from_youtube_video(url):
     try:
         yt = YouTube(url)
         logger.debug(f"downloading: {yt.title}")
@@ -19,3 +20,18 @@ def download_audio_from_youtube(url):
 
     except Exception as e:
         logger.error("Error downloading audio")
+        raise e
+
+
+def download_audio_from_playlist(playlist_url):
+    try:
+        playlist = Playlist(playlist_url)
+        logger.debug(f"Downloading audio from playlist: {playlist.title}")
+        for video_url in playlist.video_urls:
+            try:
+                download_audio_from_youtube_video(video_url)
+                print(f"Downloaded: {playlist.title}")
+            except Exception as e:
+                print(f"Failed to download playlist: {e}")
+    except Exception as e:
+        print(f"Error processing playlist: {e}")
