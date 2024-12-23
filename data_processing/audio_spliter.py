@@ -1,19 +1,21 @@
 import os
 from pydub import AudioSegment
 import uuid
-from config import DOWNLOAD_DIRECTORY, WAV_FILE_DIRECTORY, AUDIO_SPLIT_DURATION
+from logger_config.logger import configure_log
+from config import MP3_AUDIO_DIRECTORY, WAV_FILE_DIRECTORY, AUDIO_SPLIT_DURATION
+logger = configure_log(__name__)
 
 def split_audio():
 
-    if not os.path.exists(DOWNLOAD_DIRECTORY):
-        raise FileNotFoundError(f"The  '{DOWNLOAD_DIRECTORY}' was not found.")
+    if not os.path.exists(MP3_AUDIO_DIRECTORY):
+        raise FileNotFoundError(f"The  '{MP3_AUDIO_DIRECTORY}' was not found.")
 
     if not os.path.exists(WAV_FILE_DIRECTORY):
         os.makedirs(WAV_FILE_DIRECTORY)
 
-    for filename in os.listdir(DOWNLOAD_DIRECTORY):
+    for filename in os.listdir(MP3_AUDIO_DIRECTORY):
         if filename.endswith(".mp3"):
-            mp3_path = os.path.join(DOWNLOAD_DIRECTORY, filename)
+            mp3_path = os.path.join(MP3_AUDIO_DIRECTORY, filename)
             audio = AudioSegment.from_mp3(mp3_path)
             filtered_audio = audio.set_channels(1).set_frame_rate(16000)
             audio_length = len(filtered_audio)

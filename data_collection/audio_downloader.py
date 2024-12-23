@@ -1,7 +1,7 @@
 import os
-from logger import configure_log
+from logger_config.logger import configure_log
 from pytube import YouTube, Playlist
-from config import DOWNLOAD_DIRECTORY
+from config import MP3_AUDIO_DIRECTORY
 
 logger = configure_log(__name__)
 
@@ -11,9 +11,9 @@ def download_audio_from_youtube_video(url):
         yt = YouTube(url)
         logger.debug(f"downloading: {yt.title}")
         audio_stream = yt.streams.filter(only_audio=True).first()
-        if not os.path.exists(DOWNLOAD_DIRECTORY):
-            os.mkdir(DOWNLOAD_DIRECTORY)
-        output_file = audio_stream.download(output_path=DOWNLOAD_DIRECTORY)
+        if not os.path.exists(MP3_AUDIO_DIRECTORY):
+            os.mkdir(MP3_AUDIO_DIRECTORY)
+        output_file = audio_stream.download(output_path=MP3_AUDIO_DIRECTORY)
         base, ext = os.path.splitext(output_file)
         new_file = base + ".mp3"
         os.rename(output_file, new_file)

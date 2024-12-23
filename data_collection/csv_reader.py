@@ -1,5 +1,5 @@
 import pandas as pd
-from logger import configure_log
+from logger_config.logger import configure_log
 
 logger = configure_log(__name__)
 
