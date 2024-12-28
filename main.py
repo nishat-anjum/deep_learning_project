@@ -1,6 +1,6 @@
 # This is a sample Python script.
 import argparse
-
+from data_processing import audio_spliter
 from data_processing import mp3_to_wav_dataset
 from logger_config.logger import configure_log
 logger = configure_log(__name__)

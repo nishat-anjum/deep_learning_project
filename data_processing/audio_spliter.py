@@ -13,6 +13,7 @@ def split_audio():
     if not os.path.exists(WAV_FILE_DIRECTORY):
         os.makedirs(WAV_FILE_DIRECTORY)
 
+    counter = 0
     for filename in os.listdir(MP3_AUDIO_DIRECTORY):
         if filename.endswith(".mp3"):
             mp3_path = os.path.join(MP3_AUDIO_DIRECTORY, filename)
@@ -26,9 +27,10 @@ def split_audio():
             for start_ms in range(0, audio_length, AUDIO_SPLIT_DURATION):
                 end_ms = min(start_ms + AUDIO_SPLIT_DURATION, audio_length)
                 chunk = filtered_audio[start_ms:end_ms]
-                output_filename = f"toxic_{uuid.uuid4().hex}.wav"
+                counter += 1
+                output_filename = f"toxic_{counter}.mp3"
                 output_path = os.path.join(WAV_FILE_DIRECTORY, output_filename)
 
-                chunk.export(output_path, format="wav")
+                chunk.export(output_path, format="mp3")
                 print(f"Exported: {output_path}")
     print("Processing complete!")
