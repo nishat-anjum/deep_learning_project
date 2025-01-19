@@ -25,8 +25,9 @@ def generate_csv(wav_file_directory, metadata_file_path):
     dataset = []
     for filename in os.listdir(wav_file_directory):
         if filename.lower().endswith(".wav"):
+            labelString = filename.split('_')[1].split('.')[0]
             label = 0 if "non-toxic" in filename.lower() else 1
-            dataset.append({"file": filename, "label": label})
+            dataset.append({"file": filename, "label": labelString})
 
     with open(metadata_file_path, mode='w', newline='', encoding='utf-8') as file:
         fieldnames = ['file', 'label']
