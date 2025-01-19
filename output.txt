@@ -1,7 +1,0 @@
-/home/nishat/DP_Dataset_and_project/DataSet/splitter
-Error processing /home/nishat/DP_Dataset_and_project/DataSet/toxic/k85.mp3: name 'filename' is not defined
-Error processing /home/nishat/DP_Dataset_and_project/DataSet/toxic/kk64.mp3: name 'filename' is not defined
-Error processing /home/nishat/DP_Dataset_and_project/DataSet/toxic/k50.mp3: name 'filename' is not defined
-Error processing /home/nishat/DP_Dataset_and_project/DataSet/toxic/k73.mp3: name 'filename' is not defined
-Error processing /home/nishat/DP_Dataset_and_project/DataSet/toxic/kk79.mp3: name 'filename' is not defined
-Something went wrong. Check the log for details.
